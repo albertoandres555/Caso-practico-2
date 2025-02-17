@@ -1,6 +1,18 @@
 
 
-registros["Fecha"]=pd.to_datetime(registros["Fecha"])
+import pandas as pd
+import numpy as np
+from tabulate import tabulate
+
+def limpieza(df):
+    if 'Fecha' in df.columns:
+        df['Fecha'] = pd.to_datetime(df['Fecha'])
+        print("columna:Fecha cambiado su tipo a Datetime" )
+    
+    for col in df.select_dtypes(include=['object']).columns:
+        df[col] = df[col].astype('category')
+        print("columna:"+col+"cambiado su tipo de object a category" )
+    return
 
 
 
